@@ -1,15 +1,15 @@
-const   users = [
-    {name:"Masha", age:19},
-    {name:"Andrii", age:20},
-    {name:"Dasha", age:21}
-]
+User = require("./models/UserModels");
 
-module.exports = function(app){
-    app.get("/", (req, res) => {
-        res.json(users);
-    })
+module.exports = function (app) {
+  app.get("/", (req, res) => {
+    User.find((err, users) => {
+      if (err) res.send(err);
 
-    app.post("/", (req, res) => {
-        res.send(users);
-    })
-}
+      res.json(users);
+    });
+  });
+
+  app.post("/", (req, res) => {
+    res.send(users);
+  });
+};
