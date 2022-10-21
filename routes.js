@@ -1,15 +1,8 @@
-User = require("./models/UserModels");
+const User = require("./models/UserModels"),
+  userController = require("./controllers/UserController.js");
 
 module.exports = function (app) {
-  app.get("/", (req, res) => {
-    User.find((err, users) => {
-      if (err) res.send(err);
-
-      res.json(users);
-    });
-  });
-
-  app.post("/", (req, res) => {
-    res.send(users);
-  });
+  app.get("/user", userController.getListOfUsers);
+  app.get("/user/:name", userController.getUsersByName);
+  app.post("/user", userController.addUser);
 };

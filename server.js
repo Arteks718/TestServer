@@ -7,5 +7,6 @@ const express = require("express"),
 
 mongoose.connect("mongodb://localhost/users_db");
 
+app.use(express.json());
 routes(app);
 app.listen(port);
